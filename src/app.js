@@ -8,8 +8,6 @@ const routers = require("./routes/router");
 const app = express();
 app.use(bodyParser.json())
 
-console.log(constants.ENDPOINT)
-
 app.use("/api/v1/news", routers.newsRouter);
 app.use("/api/v1/auth", routers.authRouter);
 

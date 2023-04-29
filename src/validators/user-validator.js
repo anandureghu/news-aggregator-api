@@ -1,5 +1,20 @@
 const { users } = require("../utils/data");
 
+const validateUserLogin = (user) => {
+  const errors = [];
+  const requiredFields = ["username", "password"];
+  requiredFields.forEach((field) => {
+    if (!validRequiredField(user[field])) {
+      errors.push({
+        field,
+        msg: `${field} is required`,
+      });
+    }
+  });
+
+  return errors;
+};
+
 const validateUserRegistration = (user) => {
   const errors = [];
   const requiredFields = ["username", "password", "confirmPass", "email"];
@@ -39,4 +54,5 @@ const validRequiredField = (value) => {
 
 module.exports = {
   validateUserRegistration,
+  validateUserLogin,
 };
