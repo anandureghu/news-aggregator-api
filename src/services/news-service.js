@@ -7,11 +7,7 @@ const { API_KEY } = require("../config/api-config");
 
 let news = [];
 
-const getAllNews = () => {
-  const params = {
-    keyword: "kerala",
-    articlesCount: 5,
-  };
+const getAllNews = (params) => {
   return getNews(params)
 };
 

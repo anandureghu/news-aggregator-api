@@ -77,6 +77,7 @@ const register = async (params) => {
 
       bcrypt.hash(user.password, saltRounds, function (err, hash) {
         user.password = hash;
+        user.preferences = [];
         users.push(user);
       });
 

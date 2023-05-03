@@ -4,7 +4,7 @@ const users = [
     username: "test",
     password: "$2b$10$ZIr.YRQCkiRkrKWBJBaCO.sx1qbWdhmXKOMXC/hTqs.7bwmad6FMK",
     email: "test@test.com",
-    preferences: ["a", "b", "c"],
+    preferences: [],
   },
   {
     id: 2,
