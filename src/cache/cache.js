@@ -3,12 +3,12 @@ const { ENDPOINT } = require("../utils/constants");
 const { API_KEY } = require("../config/api-config");
 
 class Cache {
-  cache = {};
+  #cache = {};
 
   async get(params) {
     const key = JSON.stringify(params);
-    if (this.cache.hasOwnProperty(key)) {
-      return this.cache[key];
+    if (this.#cache.hasOwnProperty(key)) {
+      return this.#cache[key];
     } else {
       const result = await this.update(params);
       return result;
@@ -16,7 +16,7 @@ class Cache {
   }
 
   add(key, data) {
-    this.cache[key] = data;
+    this.#cache[key] = data;
   }
 
   async update(params) {
@@ -31,7 +31,10 @@ class Cache {
         .then((data) => {
           let result = data.data.articles;
           const key = JSON.stringify(params);
-          this.add(key, result);
+          // limiting cache storage
+          if (params.articlesCount <= 25) {
+            this.add(key, result);
+          }
           resolve(result);
         })
         .catch((err) => {

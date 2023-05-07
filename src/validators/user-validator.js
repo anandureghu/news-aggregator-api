@@ -4,7 +4,7 @@ const validateUserLogin = (user) => {
   const errors = [];
   const requiredFields = ["username", "password"];
   requiredFields.forEach((field) => {
-    if (!validRequiredField(user[field])) {
+    if (!validRequiredField(user[field] || "")) {
       errors.push({
         field,
         msg: `${field} is required`,
@@ -19,7 +19,7 @@ const validateUserRegistration = (user) => {
   const errors = [];
   const requiredFields = ["username", "password", "confirmPass", "email"];
   requiredFields.forEach((field) => {
-    if (!validRequiredField(user[field])) {
+    if (!validRequiredField(user[field] || "")) {
       errors.push({
         field,
         msg: `${field} is required`,
@@ -44,7 +44,7 @@ const validateUserRegistration = (user) => {
 
 const validRequiredField = (value) => {
   if (typeof value === "string") {
-    if (!value || value === "" || value === " ") {
+    if (!value || value.trim() === "") {
       return false;
     }
   }
@@ -55,4 +55,5 @@ const validRequiredField = (value) => {
 module.exports = {
   validateUserRegistration,
   validateUserLogin,
+  validRequiredField,
 };
